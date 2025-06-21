@@ -146,7 +146,7 @@
 
 @media (min-width: 1024px) and (max-width: 1279px) {
   .title-size {
-    font-size: 4rem;
+    font-size: 48px !important;
   }
 
   .main-search-container {

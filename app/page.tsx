@@ -328,8 +328,7 @@ export default function WhimsicalHelpCenter() {
         {/* Sidebar */}
         <aside
           className={`
-            fixed xl:static inset-y-0 left-0 z-50 w-80 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out xl:transform-none primary-bg-color
-            ${sidebarOpen ? "translate-x-0" : "-translate-x-full xl:translate-x-0"}
+             xl:static inset-y-0 left-0 z-50 w-80 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out xl:transform-none primary-bg-color
           `}
           style={{ maxWidth: "300px" }}
         >
@@ -345,11 +344,11 @@ export default function WhimsicalHelpCenter() {
           </div>
 
           {/* Mobile close button */}
-          <div className="xl:hidden flex justify-end p-4">
+          {/* <div className="xl:hidden flex justify-end p-4">
             <button onClick={closeSidebar} className="p-1 rounded-md hover:bg-gray-100">
               <X className="w-5 h-5 text-gray-600" />
             </button>
-          </div>
+          </div> */}
 
           <nav className="p-4 space-y-1 overflow-y-auto h-full" style={{ height: "100vh" }}>
             {sidebarItems.map((item, index) => (
@@ -400,11 +399,11 @@ export default function WhimsicalHelpCenter() {
           {/* Header */}
           <header className="bg-white border-b border-gray-200 px-4 xl:px-6 py-2.5 primary-bg-color">
             <div className="flex items-center justify-between w-full">
-              <div className="flex items-center space-x-4 xl:h xl:hidden">
+              {/* <div className="flex items-center space-x-4 xl:h xl:hidden">
                 <button onClick={() => setSidebarOpen(true)} className="xl:hidden p-1 rounded-md hover:bg-gray-100">
                   <Menu className="w-5 h-5 text-gray-600" />
                 </button>
-              </div>
+              </div> */}
 
               <div className="flex-1 max-w-xs lg:max-w-sm" style={{ maxWidth: "17rem" }}>
                 <div className="relative ">
@@ -492,7 +491,7 @@ export default function WhimsicalHelpCenter() {
                     grid 
                     grid-cols-1 
                     sm:grid-cols-2 
-                    lg:grid-cols-3 
+                    lg:grid-cols-2 
                     xl:grid-cols-3      /* Entre 1280px e 1515px mostra 3 cards */
                     2xl:grid-cols-4     /* Acima de 1515px mostra 4 cards */
                     gap-4 lg:gap-6 px-4
