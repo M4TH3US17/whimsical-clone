@@ -351,7 +351,7 @@ export default function WhimsicalHelpCenter() {
             </button>
           </div> */}
 
-          <nav className="p-4 space-y-1 overflow-y-auto h-full" style={{ height: "100vh" }}>
+          <nav className="px-4 space-y-1 overflow-y-auto h-full" style={{ height: "100vh" }}>
             {sidebarItems.map((item, index) => (
               <div key={index} style={{ marginBottom: "11px" }}>
                 <div
@@ -382,7 +382,7 @@ export default function WhimsicalHelpCenter() {
                       <Link
                         key={subIndex}
                         href={`/article/${subitem.slug}`}
-                        className="block px-3 py-1 text-sm text-gray-600 rounded-md hover:bg-gray-50 cursor-pointer primary-font-color xl-sub-item"
+                        className="block px-3 py-1 text-sm text-gray-600 rounded-md hover:bg-gray-50 cursor-pointer primary-font-color xl-sub-item primary-font-color xl-font"
                         onClick={closeSidebar}
                       >
                         {subitem.title}
