@@ -1,0 +1,16 @@
+.modal {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.modal-selected-item {
+    background: #f6f2f7;
+    background: rgb(249, 220, 220);
+    border-radius: 0.3rem;
+}
+
+.modal-footer {
+    background: rgb(245, 244, 245);
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}

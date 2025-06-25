@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 import "./css/page.css"
+import "./css/modal.css"
 
 const sidebarItems = [
   {
@@ -547,7 +548,7 @@ export default function WhimsicalHelpCenter() {
         <div className="fixed inset-0 bg-gray-900/20 backdrop-blur-sm z-50 flex items-start justify-center pt-16 lg:pt-24 px-4">
           <div
             ref={modalRef}
-            className="bg-white rounded-xl shadow-2xl w-full max-w-xl lg:max-w-2xl max-h-96 overflow-hidden"
+            className="bg-white shadow-2xl w-full max-w-xl lg:max-w-2xl max-h-96 modal"
           >
             <div className="p-3 lg:p-4 border-b border-gray-100">
               <div className="relative">
@@ -564,11 +565,11 @@ export default function WhimsicalHelpCenter() {
               </div>
             </div>
 
-            <div className="max-h-80 overflow-y-auto">
+            <div className="max-h-80 overflow-y-auto" style={{ background: '#fff', padding: '0.3rem'}}>
               {sidebarItems.slice(0, -1).map((item, index) => (
                 <div
                   key={index}
-                  className={`flex items-start space-x-3 p-3 lg:p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-b-0 ${selectedSearchItem === index ? "bg-gray-50" : ""
+                  className={`flex items-start space-x-3 p-3 lg:p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-b-0 ${selectedSearchItem === index ? "modal-selected-item" : ""
                     }`}
                 >
                   <div className="flex-shrink-0 mt-0.5">
@@ -584,7 +585,7 @@ export default function WhimsicalHelpCenter() {
               ))}
             </div>
 
-            <div className="px-3 lg:px-4 py-2.5 lg:py-3 border-t border-gray-100 bg-gray-50/50 flex items-center justify-between text-xs text-gray-500">
+            <div className="modal-footer px-3 lg:px-4 py-2.5 lg:py-3 border-t border-gray-100 bg-gray-50/50 flex items-center justify-between text-xs text-gray-500">
               <div className="flex items-center space-x-3 lg:space-x-4">
                 <span className="flex items-center space-x-1.5">
                   <kbd className="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-white border border-gray-200 rounded text-xs font-medium">

@@ -1,0 +1,5 @@
+* fontes
+* tamanhos
+
+* lentidao na transicao de paginas
+* fluidez no scroll do sumario
