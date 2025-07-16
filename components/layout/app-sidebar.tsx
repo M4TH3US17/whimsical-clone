@@ -9,13 +9,17 @@ interface AppSidebarProps {
   expandedItems: number[]
   onToggleExpanded: (index: number) => void
   onClose: () => void
-  currentSlug?: string
+  currentSlug?: string 
+  isCollapsed?: boolean
 }
 
-export function AppSidebar({ items, expandedItems, onToggleExpanded, onClose, currentSlug }: AppSidebarProps) {
+export function AppSidebar({ items, expandedItems, onToggleExpanded, onClose, currentSlug, isCollapsed=false }: AppSidebarProps) {
   return (
     <aside
-      className="xl:static inset-y-0 left-0 z-50 w-80 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out xl:transform-none primary-bg-color"
+      className={`
+        bg-white shadow-md h-screen z-40 transition-transform duration-300 ease-in-out
+        ${isCollapsed ? "fixed top-0 left-0 w-64 transform -translate-x-full" : "w-[300px] hidden lg:block"}
+      `}
       style={{
         maxWidth: "300px",
         position: "fixed",
