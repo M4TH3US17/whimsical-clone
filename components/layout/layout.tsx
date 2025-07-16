@@ -81,7 +81,7 @@ export const Layout: React.FC<LayoutProps> & LayoutComposition = ({
           currentSlug={currentSlug}
         />
 
-        <main className="flex-1 min-h-screen primary-bg-color" style={{ background: "#F5F5F5 "}}>
+        <main className="flex-1 min-h-screen bg-[#F5F5F5] transition-all duration-300 xl:ml-[300px]" >
           <AppHeader
             searchValue={searchValue}
             onSearchChange={onSearchChange}

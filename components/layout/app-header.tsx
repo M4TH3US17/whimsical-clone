@@ -1,25 +1,28 @@
-"use client"
+"use client";
 
-import { Menu, Search, ExternalLink, User } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Menu, Search, ExternalLink, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface AppHeaderProps {
-  searchValue: string
-  onSearchChange: (value: string) => void
-  onOpenSearchModal: () => void
-  onOpenSidebar: () => void
+  searchValue: string;
+  onSearchChange: (value: string) => void;
+  onOpenSearchModal: () => void;
+  onOpenSidebar: () => void;
 }
 
-export function AppHeader({ searchValue, onSearchChange, onOpenSearchModal, onOpenSidebar }: AppHeaderProps) {
+export function AppHeader({
+  searchValue,
+  onSearchChange,
+  onOpenSearchModal,
+  onOpenSidebar,
+}: AppHeaderProps) {
   return (
     <header
-      className="bg-white border-b border-gray-200 px-4 xl:px-6 py-2.5 primary-bg-color"
+      className="bg-white border-b border-gray-200 px-4 xl:px-6 py-2.5 primary-bg-color
+      fixed top-0 z-30 w-full xl:w-[calc(100vw-300px)] xl:right-0
+      "
       style={{
-        position: "fixed",
-        width: "calc(100vw - 300px)",
-        right: 0,
-        zIndex: 3,
         background: "#F5F5F5",
         borderBottom: "1px solid #ccccccff",
       }}
@@ -35,7 +38,10 @@ export function AppHeader({ searchValue, onSearchChange, onOpenSearchModal, onOp
           </button>
 
           {/* 🔍 INPUT DE BUSCA */}
-          <div className="flex-1 max-w-xs lg:max-w-sm" style={{ maxWidth: "18rem" }}>
+          <div
+            className="flex-1 max-w-xs lg:max-w-sm"
+            style={{ maxWidth: "18rem" }}
+          >
             <div className="relative">
               <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input
@@ -78,5 +84,5 @@ export function AppHeader({ searchValue, onSearchChange, onOpenSearchModal, onOp
         </div>
       </div>
     </header>
-  )
+  );
 }
