@@ -43,10 +43,17 @@ export function HeroSection({
   }
 
   return (
-    <div className="text-center mb-12 lg:mb-16">
+    <div
+      className="text-center"
+      style={{
+        // background: "red",
+        width: "calc((100vw * 0.76) * 0.8)",
+        // margin: "0 auto",
+      }}
+    >
       <h1 className="text-3xl font-bold leading-tight title-size">{renderTitle()}</h1>
       <p
-        className="text-gray-600 text-base lg:text-lg mb-8 lg:mb-6 leading-relaxed px-4 subtitle-size"
+        className="text-gray-600 text-base lg:text-lg mb-8 lg:mb-6 leading-relaxed subtitle-size"
         style={{ color: "#252525" }}
         dangerouslySetInnerHTML={{ __html: subtitle }}
       />

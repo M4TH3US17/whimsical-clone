@@ -8,15 +8,24 @@ interface CategoriesGridProps {
 
 export function CategoriesGrid({ title, categories }: CategoriesGridProps) {
   return (
-    <div className="max-w-full xl:max-w-none lg:max-w-[600px] lg:mx-auto"
+    <div
+      className="max-w-full xl:max-w-none lg:max-w-[600px] lg:mx-auto"
+      style={{
+        // background: "red",
+        width: "calc((100vw * 0.76) * 0.8)",
+      }}
     >
       <h2
-        className="text-lg lg:text-xl text-gray-900 mb-6 lg:mb-5 px-4"
-        style={{ color: "#252525", fontSize: "18.5px", fontWeight: 500 }}
+        className="text-lg lg:text-xl text-gray-900 mb-3 lg:mb-3"
+        style={{
+          color: "#252525",
+          fontSize: "18.5px",
+          fontWeight: 500,
+        }}
       >
         {title}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-6 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-6">
         {categories.map((category, index) => (
           <CategoryCard key={index} category={category} />
         ))}
@@ -36,7 +45,7 @@ function CategoryCard({ category }: CategoryCardProps) {
       className="bg-white p-4 lg:p-6 cursor-pointer group aspect-square flex flex-col relative overflow-hidden"
       style={{
         maxHeight: "225px",
-        width: "256px",
+        width: "100%",
         background: "#FFFFFF",
         border: "1px solid #ccccccff",
         borderRadius: "15px"
@@ -74,7 +83,7 @@ function CategoryCard({ category }: CategoryCardProps) {
             </p>
           )}
           {category.articles && (
-            <p className="text-xs text-gray-400 font-medium tracking-wide mt-auto" style={{ fontSize: "9px", color: "#000000"}}>
+            <p className="text-xs text-gray-400 font-medium tracking-wide mt-auto" style={{ fontSize: "9px", color: "#000000" }}>
               {category.articles}
             </p>
           )}

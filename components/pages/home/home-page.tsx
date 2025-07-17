@@ -47,12 +47,27 @@ export function HomePage() {
       mainSearchValue={modalSearchValue}
       onMainSearchChange={setModalSearchValue}
     >
-      <div className="px-4 lg:px-6 py-8" style={{ paddingTop: "80px" }}>
+      <div
+        className=""
+        style={{
+          display: "flex",
+          justifyContent: "right",
+        }}
+      >
+
         <div
-          className="max-w-6xl mx-auto font-jakarta"
+          className="font-jakarta"
           style={{
-            paddingTop: "80px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "calc(100vh * 0.07)",
+
+            marginTop: "56px",
             fontSize: "42px",
+            width: "calc(100vw * 0.76)",
+
+            padding: "calc(100vh * 0.09) 0 calc(100vh * 0.16) 0"
           }}
         >
           <HeroSection

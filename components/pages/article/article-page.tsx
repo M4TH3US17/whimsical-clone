@@ -33,7 +33,6 @@ export function ArticlePage() {
         <div
           className="flex items-center justify-center min-h-96 mt-[60px]"
           style={{
-            // background: "red",
             width: "calc(100vw - 300px)",
             position: "absolute",
             right: 0

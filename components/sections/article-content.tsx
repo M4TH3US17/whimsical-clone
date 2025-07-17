@@ -15,7 +15,6 @@ export function ArticleContent({ article }: ArticleContentProps) {
           lg:px-20 xl:px-40
     "
       style={{
-        // background: "red",
         paddingBottom: "400px",
         backgroundColor: "#fbfafc",
       }}

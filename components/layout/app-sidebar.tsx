@@ -21,7 +21,7 @@ export function AppSidebar({ items, expandedItems, onToggleExpanded, onClose, cu
         ${isCollapsed ? "fixed top-0 left-0 w-64 transform -translate-x-full" : "w-[300px] hidden lg:block"}
       `}
       style={{
-        maxWidth: "300px",
+        width: "calc(100vw * 0.24)",
         position: "fixed",
         background: "#F5F5F5",
         borderRight: "1px solid #ccccccff",
