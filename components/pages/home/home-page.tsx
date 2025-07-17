@@ -5,20 +5,20 @@
  * Combina hero section e grid de categorias.
  */
 
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useContent } from "@/contexts/content-context"
-import { useSearch } from "@/hooks/use-search"
-import { Layout } from "@/components/layout/layout"
-import { HeroSection } from "@/components/sections/hero-section"
-import { CategoriesGrid } from "@/components/sections/categories-grid"
+import { useState } from "react";
+import { useContent } from "@/contexts/content-context";
+import { useSearch } from "@/hooks/use-search";
+import { Layout } from "@/components/layout/layout";
+import { HeroSection } from "@/components/sections/hero-section";
+import { CategoriesGrid } from "@/components/sections/categories-grid";
 
 export function HomePage() {
-  const { content } = useContent()
-  const [headerSearchValue, setHeaderSearchValue] = useState("")
+  const { content } = useContent();
+  const [headerSearchValue, setHeaderSearchValue] = useState("");
 
   // 🔍 Hook de busca para o modal
   const {
@@ -29,16 +29,16 @@ export function HomePage() {
     closeModal,
   } = useSearch({
     items: content.sidebar.items,
-  })
+  });
 
   // 🎯 Abrir modal e sincronizar valores
   const handleOpenSearchModal = () => {
     // Se há valor no header, usar no modal
     if (headerSearchValue) {
-      setModalSearchValue(headerSearchValue)
+      setModalSearchValue(headerSearchValue);
     }
-    openModal()
-  }
+    openModal();
+  };
 
   return (
     <Layout
@@ -47,28 +47,17 @@ export function HomePage() {
       mainSearchValue={modalSearchValue}
       onMainSearchChange={setModalSearchValue}
     >
-      <div
-        className=""
-        style={{
-          display: "flex",
-          justifyContent: "right",
-        }}
-      >
-
+      <div className="flex justify-end">
         <div
-          className="font-jakarta"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "calc(100vh * 0.07)",
-
-            marginTop: "56px",
-            fontSize: "42px",
-            width: "calc(100vw * 0.76)",
-
-            padding: "calc(100vh * 0.09) 0 calc(100vh * 0.16) 0"
-          }}
+          className="
+          font-jakarta
+          flex flex-col items-center
+          gap-[calc(100vh*0.07)]
+          mt-[56px]
+          text-[42px]
+          w-[76vw]
+          pt-[calc(100vh*0.09)] pb-[calc(100vh*0.16)]
+        "
         >
           <HeroSection
             title={content.homepage.hero.title}
@@ -79,7 +68,10 @@ export function HomePage() {
             onOpenSearchModal={handleOpenSearchModal} // Passa a função para abrir o modal
           />
 
-          <CategoriesGrid title={content.homepage.categories.title} categories={content.homepage.categories.items} />
+          <CategoriesGrid
+            title={content.homepage.categories.title}
+            categories={content.homepage.categories.items}
+          />
         </div>
       </div>
 
@@ -99,94 +91,109 @@ export function HomePage() {
         </div>
       )}
     </Layout>
-  )
+  );
 }
 
 // Componente SearchModal inline para evitar conflitos
-import { useRef, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Search } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import type { SidebarItem } from "@/types/content"
+import { useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import type { SidebarItem } from "@/types/content";
 
 interface SearchModalContentProps {
-  isOpen: boolean
-  onClose: () => void
-  searchValue: string
-  onSearchChange: (value: string) => void
-  items: SidebarItem[]
+  isOpen: boolean;
+  onClose: () => void;
+  searchValue: string;
+  onSearchChange: (value: string) => void;
+  items: SidebarItem[];
 }
 
-function SearchModalContent({ isOpen, onClose, searchValue, onSearchChange, items }: SearchModalContentProps) {
-  const modalRef = useRef<HTMLDivElement>(null)
-  const router = useRouter()
-  const [selectedIndex, setSelectedIndex] = useState(0)
+function SearchModalContent({
+  isOpen,
+  onClose,
+  searchValue,
+  onSearchChange,
+  items,
+}: SearchModalContentProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Filtrar itens
   const filteredItems = items.slice(0, -1).filter((item) => {
-    if (!searchValue.trim()) return true
-    const searchTerm = searchValue.toLowerCase()
+    if (!searchValue.trim()) return true;
+    const searchTerm = searchValue.toLowerCase();
     return (
       item.title.toLowerCase().includes(searchTerm) ||
       item.description?.toLowerCase().includes(searchTerm) ||
-      item.subitems?.some((subitem) => subitem.title.toLowerCase().includes(searchTerm))
-    )
-  })
+      item.subitems?.some((subitem) =>
+        subitem.title.toLowerCase().includes(searchTerm)
+      )
+    );
+  });
 
   // Navegar para item
   const navigateToItem = (item: SidebarItem) => {
     if (item.subitems && item.subitems.length > 0) {
-      router.push(`/article/${item.subitems[0].slug}`)
+      router.push(`/article/${item.subitems[0].slug}`);
     }
-    onClose()
-  }
+    onClose();
+  };
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
       case "Escape":
-        onClose()
-        break
+        onClose();
+        break;
       case "ArrowDown":
-        e.preventDefault()
-        setSelectedIndex((prev) => (prev < filteredItems.length - 1 ? prev + 1 : 0))
-        break
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev < filteredItems.length - 1 ? prev + 1 : 0
+        );
+        break;
       case "ArrowUp":
-        e.preventDefault()
-        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : filteredItems.length - 1))
-        break
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev > 0 ? prev - 1 : filteredItems.length - 1
+        );
+        break;
       case "Enter":
-        e.preventDefault()
+        e.preventDefault();
         if (filteredItems[selectedIndex]) {
-          navigateToItem(filteredItems[selectedIndex])
+          navigateToItem(filteredItems[selectedIndex]);
         }
-        break
+        break;
     }
-  }
+  };
 
   // Click outside to close
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClose()
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        onClose();
       }
-    }
+    };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside)
-      document.body.style.overflow = "hidden"
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-      document.body.style.overflow = "unset"
-    }
-  }, [isOpen, onClose])
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, onClose]);
 
   // Reset selected index when search changes
   useEffect(() => {
-    setSelectedIndex(0)
-  }, [searchValue])
+    setSelectedIndex(0);
+  }, [searchValue]);
 
   return (
     <div ref={modalRef} role="dialog" aria-modal="true">
@@ -214,7 +221,11 @@ function SearchModalContent({ isOpen, onClose, searchValue, onSearchChange, item
               key={`${item.title}-${index}`}
               className={`
                 flex items-start space-x-3 p-3 lg:p-4 cursor-pointer border-b border-gray-50 last:border-b-0 transition-colors
-                ${index === selectedIndex ? "bg-purple-50 border-purple-100" : "hover:bg-gray-50"}
+                ${
+                  index === selectedIndex
+                    ? "bg-purple-50 border-purple-100"
+                    : "hover:bg-gray-50"
+                }
               `}
               onClick={() => navigateToItem(item)}
             >
@@ -225,12 +236,21 @@ function SearchModalContent({ isOpen, onClose, searchValue, onSearchChange, item
                     ${index === selectedIndex ? "bg-purple-100" : ""}
                   `}
                 >
-                  <div className="w-4 h-4 text-gray-600" dangerouslySetInnerHTML={{ __html: item.iconHtml || "" }} />
+                  <div
+                    className="w-4 h-4 text-gray-600"
+                    dangerouslySetInnerHTML={{ __html: item.iconHtml || "" }}
+                  />
                 </div>
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-medium text-gray-900 text-sm mb-1">{item.title}</h3>
-                {item.description && <p className="text-gray-500 text-xs leading-relaxed">{item.description}</p>}
+                <h3 className="font-medium text-gray-900 text-sm mb-1">
+                  {item.title}
+                </h3>
+                {item.description && (
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    {item.description}
+                  </p>
+                )}
               </div>
               {index === selectedIndex && (
                 <div className="flex-shrink-0">
@@ -242,7 +262,9 @@ function SearchModalContent({ isOpen, onClose, searchValue, onSearchChange, item
         ) : (
           <div className="p-8 text-center">
             <p className="text-gray-500 text-sm">
-              {searchValue ? "Nenhum resultado encontrado" : "Digite para buscar"}
+              {searchValue
+                ? "Nenhum resultado encontrado"
+                : "Digite para buscar"}
             </p>
           </div>
         )}
@@ -265,7 +287,10 @@ function SearchModalContent({ isOpen, onClose, searchValue, onSearchChange, item
           </span>
         </div>
         <div className="flex items-center space-x-3 lg:space-x-4">
-          <button onClick={onClose} className="hover:text-gray-700 transition-colors text-xs">
+          <button
+            onClick={onClose}
+            className="hover:text-gray-700 transition-colors text-xs"
+          >
             Fechar
           </button>
           <span className="flex items-center space-x-1.5">
@@ -276,5 +301,5 @@ function SearchModalContent({ isOpen, onClose, searchValue, onSearchChange, item
         </div>
       </div>
     </div>
-  )
+  );
 }

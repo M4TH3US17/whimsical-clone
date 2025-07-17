@@ -18,16 +18,14 @@ export function AppHeader({
   onOpenSidebar,
 }: AppHeaderProps) {
   return (
-    <header
-      className="bg-white border-b border-gray-200 px-4 xl:px-6 py-2.5 primary-bg-color"
-      style={{
-        position: "fixed",
-        width: "calc(100vw * 0.76)",
-        right: 0,
-        zIndex: 3,
-        background: "#F5F5F5",
-        borderBottom: "1px solid #ccccccff",
-      }}
+     <header
+      className="
+        fixed top-0 right-0 z-30
+        w-full xl:w-[76vw]
+        bg-[#F5F5F5] border-b border-[#ccccccff]
+        px-4 xl:px-6 py-2.5
+        primary-bg-color
+      "
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-2">
